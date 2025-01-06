@@ -139,7 +139,7 @@ const Home: React.FC = () => {
     };
     return (
         <QueryClientProvider client={queryClient}>
-            <div className="p-4 lg:p-14 bg-zinc-900">
+            <div className="p-4 lg:p-14 bg-zinc-900 text-zinc-100">
                 <h2 className="text-center mb-3 text-lg">NextJS Card Game</h2>
                 <div className="text-center mb-3 text-sm">
                     <div className="flex text-xs text-zinc-300 items-center justify-center">

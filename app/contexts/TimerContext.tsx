@@ -16,7 +16,7 @@ const TimerContext = createContext<TimerContextProps | undefined>(undefined);
 // Provider 컴포넌트 정의
 export const TimerProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [isRunning, setIsRunning] = useState<boolean>(false);
-    const [time, setTime] = useState<Time>({
+    const [time] = useState<Time>({
         format: '0:0',
         number: 0,
     });

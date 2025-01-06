@@ -1,6 +1,6 @@
 import { Card } from '@/app/types/card';
 import { NextResponse } from 'next/server';
-import { generateRandomCards, getRandomHeros } from '@/app/utils/generateCards';
+import { getRandomHeros } from '@/app/utils/generateCards';
 
 const overwatchHerosDatas = [
     {

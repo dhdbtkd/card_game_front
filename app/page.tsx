@@ -56,9 +56,7 @@ const Home: React.FC = () => {
 
     useEffect(() => {
         if (cards.length > 0 && solvedCards.length === cards.length) {
-            setTimeout(() => {
-                toggleTimer(false);
-            }, 50);
+            completeGame();
         }
     }, [solvedCards]);
 
@@ -119,7 +117,11 @@ const Home: React.FC = () => {
         toggleTimer();
         console.log(isRunning);
     };
-    const completeGame = () => {};
+    const completeGame = () => {
+        setTimeout(() => {
+            toggleTimer(false);
+        }, 50);
+    };
     return (
         <QueryClientProvider client={queryClient}>
             <div className="p-4 lg:p-14">

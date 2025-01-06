@@ -13,7 +13,7 @@ const CardComponent: React.FC<CardProps> = ({ card, isFlipped, isSolved, handleC
     return (
         <div
             data-value={card.value}
-            className={`  flex items-center justify-center w-28 h-40 p-4 rounded-lg border border-zinc-100 bg-cover bg-center bg-opacity-90 ${
+            className={`relative  flex items-center justify-center w-full h-full aspect-h-4 aspect-w-3 lg:w-28 lg:h-40 lg:p-4 rounded-lg border border-zinc-100 bg-cover bg-center bg-opacity-90 ${
                 isSolved ? 'bg-green-600' : isFlipped ? 'bg-zinc-800' : 'cursor-pointer hover:bg-zinc-800'
             }
             ${isWaiting ? 'cursor-not-allowed' : ''}`}
@@ -29,7 +29,7 @@ const CardComponent: React.FC<CardProps> = ({ card, isFlipped, isSolved, handleC
             }}
         >
             <div
-                className={`relative w-full h-full transform-style-preserve-3d select-none ${isFlipped ? 'flip' : ''}`}
+                className={`w-full h-full transform-style-preserve-3d select-none ${isFlipped ? 'flip' : ''}`}
                 style={{}}
             >
                 {/* 카드 앞면 */}
@@ -41,6 +41,7 @@ const CardComponent: React.FC<CardProps> = ({ card, isFlipped, isSolved, handleC
                     <span>?</span>
                 </div>
                 {/* 카드 뒷면 */}
+                {/* <img className="h-full w-full object-contain" src={card.imgSrc}></img> */}
                 <div
                     className={`absolute w-full h-full backface-hidden flex items-center justify-center text-2xl font-bold ${
                         isFlipped ? 'rotateY(180deg)' : ''

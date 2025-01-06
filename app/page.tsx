@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Card } from './types/card';
 import CardComponent from './components/card';
 import Timer, { TimerHandle } from './components/Timer';
+import { Icon } from '@iconify/react';
 
 import { useTimer } from './hooks/useTimer';
 
@@ -57,7 +58,6 @@ const Home: React.FC = () => {
         if (cards.length > 0 && solvedCards.length === cards.length) {
             setTimeout(() => {
                 toggleTimer(false);
-                alert('완료');
             }, 50);
         }
     }, [solvedCards]);
@@ -122,15 +122,17 @@ const Home: React.FC = () => {
     const completeGame = () => {};
     return (
         <QueryClientProvider client={queryClient}>
-            <div className="p-14">
+            <div className="p-4 lg:p-14">
                 <h2 className="text-center mb-3 text-lg">NextJS Card Game</h2>
                 <div className="text-center mb-3 text-sm">
-                    Timer
+                    <div className="flex text-xs text-zinc-300 items-center justify-center">
+                        <Icon className="text-base mr-1" icon="majesticons:timer-line" />
+                    </div>
                     <Timer ref={timerRef}></Timer>
                 </div>
-                <div className="flex items-center justify-center mb-6">
+                <div className="flex items-center justify-center mb-3 lg:mb-6">
                     <button
-                        className="px-5 py-1 rounded-full border border-zinc-700 cursor-pointer hover:bg-zinc-800 mx-2"
+                        className="px-5 py-1 rounded-full border border-zinc-700 cursor-pointer hover:bg-zinc-800 mx-2 text-sm"
                         onClick={resetGame}
                     >
                         Retry
@@ -147,7 +149,7 @@ const Home: React.FC = () => {
                 ) : (
                     <div className="relative">
                         <div className="flex justify-center items-center">
-                            <div className="grid gap-5 grid-cols-5 p-10">
+                            <div className="grid gap-3 lg:gap-5 grid-cols-3 lg:grid-cols-5 p-5 lg:p-10 w-full lg:w-auto place-items-center">
                                 {cards.map((card) => (
                                     <CardComponent
                                         key={card.id}

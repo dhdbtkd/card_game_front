@@ -47,6 +47,7 @@ const Home: React.FC = () => {
     });
 
     // const [cards, setCards] = useState<Card[]>([]);
+    const [shuffledCards, setShuffledCards] = useState<Card[]>([]);
     const [flippedCards, setFlippedCards] = useState<Card[]>([]);
     const [solvedCards, setSolvedCards] = useState<Card[]>([]);
     const [isWaiting, setIsWating] = useState<boolean>(false);
@@ -54,6 +55,18 @@ const Home: React.FC = () => {
 
     const { isRunning, toggleTimer, time } = useTimer(); // 타이머 상태 가져오기
 
+    const shuffleCards = (cards: Card[]) => {
+        const shuffled = [...cards];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        setShuffledCards(shuffled);
+    };
+    useEffect(() => {
+        console.log('카드 로딩 완료');
+        if (cards) shuffleCards(cards);
+    }, [cards]);
     useEffect(() => {
         if (cards.length > 0 && solvedCards.length === cards.length) {
             completeGame();
@@ -104,6 +117,7 @@ const Home: React.FC = () => {
     //     };
     //     fetchCards();
     // }, []);
+
     const resetGame = () => {
         refetch();
         setSolvedCards([]);
@@ -112,6 +126,7 @@ const Home: React.FC = () => {
         if (timerRef.current) {
             timerRef?.current?.resetTimer();
         }
+        shuffleCards(cards);
     };
     const startGame = () => {
         toggleTimer();
@@ -124,7 +139,7 @@ const Home: React.FC = () => {
     };
     return (
         <QueryClientProvider client={queryClient}>
-            <div className="p-4 lg:p-14">
+            <div className="p-4 lg:p-14 bg-zinc-900">
                 <h2 className="text-center mb-3 text-lg">NextJS Card Game</h2>
                 <div className="text-center mb-3 text-sm">
                     <div className="flex text-xs text-zinc-300 items-center justify-center">
@@ -146,13 +161,13 @@ const Home: React.FC = () => {
                         {isRunning ? 'Stop' : 'Start'}
                     </button> */}
                 </div>
-                {!cards || cards.length === 0 ? (
+                {!shuffledCards || shuffledCards.length === 0 ? (
                     <p className="flex items-center justify-center text-5xl font-bold w-full h-full">loading</p>
                 ) : (
                     <div className="relative">
                         <div className="flex justify-center items-center">
                             <div className="grid gap-3 lg:gap-5 grid-cols-3 lg:grid-cols-5 p-5 lg:p-10 w-full lg:w-auto place-items-center">
-                                {cards.map((card) => (
+                                {shuffledCards.map((card) => (
                                     <CardComponent
                                         key={card.id}
                                         card={card}
@@ -174,9 +189,9 @@ const Home: React.FC = () => {
                                 </div>
                             </div>
                         ) : cards.length > 0 && solvedCards.length === cards.length ? (
-                            <div className="absolute top-0 left-0 w-full h-full justify-center flex flex-col items-center z-10 backdrop-blur-sm ">
+                            <div className="absolute top-0 left-0 w-full h-full justify-center flex flex-col items-center z-10 backdrop-blur ">
                                 <div className="text-4xl font-bold mb-4">Done !!</div>
-                                <div className="text-xl text-center">Your Record {time.format}</div>
+                                <div className="text-xl text-center  rounded-lg px-2">Your Record {time.format}</div>
                             </div>
                         ) : (
                             ''

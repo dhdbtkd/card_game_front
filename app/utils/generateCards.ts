@@ -10,8 +10,8 @@ export const getRandomHeros = (data: Card[], n: number) => {
 
     // 각 데이터를 두 번씩 복제하고 새로운 ID 생성
     const duplicatedData = selectedData.flatMap((item) => [
-        { ...item, id: item.id - 1 },
-        { ...item, id: item.id - 2 },
+        { ...item, id: item.id * 2 + 1 },
+        { ...item, id: item.id * 2 + 2 },
     ]);
 
     // Fisher-Yates Shuffle 알고리즘을 이용한 무작위 섞기

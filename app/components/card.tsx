@@ -6,7 +6,7 @@ interface CardProps {
     isFlipped: boolean;
     isSolved: boolean;
     isWaiting: boolean;
-    handleCardClick: (card: Card) => void;
+    handleCardClick: (card: Card, duration: number) => void;
 }
 
 const CardComponent: React.FC<CardProps> = ({ card, isFlipped, isSolved, handleCardClick, isWaiting }) => {
@@ -14,11 +14,11 @@ const CardComponent: React.FC<CardProps> = ({ card, isFlipped, isSolved, handleC
         <div
             data-value={card.value}
             className={`  flex items-center justify-center w-28 h-40 p-4 rounded-lg border border-zinc-100 ${
-                isSolved ? 'bg-green-600' : isFlipped ? 'bg-zinc-900' : 'cursor-pointer hover:bg-zinc-800'
+                isSolved ? 'bg-green-600' : isFlipped ? 'bg-zinc-800' : 'cursor-pointer hover:bg-zinc-800'
             }
             ${isWaiting ? 'cursor-not-allowed' : ''}`}
             onClick={() => {
-                if (!isWaiting) handleCardClick(card);
+                if (!isWaiting) handleCardClick(card, 500);
             }}
             style={{
                 perspective: '1000px', // 3D 효과를 위한 시점 설정
@@ -41,14 +41,14 @@ const CardComponent: React.FC<CardProps> = ({ card, isFlipped, isSolved, handleC
                 </div>
                 {/* 카드 뒷면 */}
                 <div
-                    className={`absolute w-full h-full backface-hidden flex items-center justify-center ${
+                    className={`absolute w-full h-full backface-hidden flex items-center justify-center text-2xl font-bold ${
                         isFlipped ? 'rotateY(180deg)' : ''
                     }`}
                     style={{
                         transform: isFlipped || isSolved ? 'rotateY(180deg)' : '',
                     }}
                 >
-                    <span>{isSolved || isFlipped ? card.value : '?'}</span>
+                    <span>{isSolved || isFlipped ? card.value : ''}</span>
                 </div>
             </div>
         </div>

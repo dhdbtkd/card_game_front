@@ -13,7 +13,7 @@ const CardComponent: React.FC<CardProps> = ({ card, isFlipped, isSolved, handleC
     return (
         <div
             data-value={card.value}
-            className={`  flex items-center justify-center w-28 h-40 p-4 rounded-lg border border-zinc-100 bg-cover bg-center ${
+            className={`  flex items-center justify-center w-28 h-40 p-4 rounded-lg border border-zinc-100 bg-cover bg-center bg-opacity-90 ${
                 isSolved ? 'bg-green-600' : isFlipped ? 'bg-zinc-800' : 'cursor-pointer hover:bg-zinc-800'
             }
             ${isWaiting ? 'cursor-not-allowed' : ''}`}
@@ -49,7 +49,7 @@ const CardComponent: React.FC<CardProps> = ({ card, isFlipped, isSolved, handleC
                         transform: isFlipped || isSolved ? 'rotateY(180deg)' : '',
                     }}
                 >
-                    <span>{isSolved || isFlipped ? card.value : ''}</span>
+                    <span>{isSolved || isFlipped ? '' : ''}</span>
                 </div>
             </div>
         </div>

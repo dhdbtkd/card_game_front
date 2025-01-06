@@ -55,8 +55,10 @@ const Home: React.FC = () => {
 
     useEffect(() => {
         if (cards.length > 0 && solvedCards.length === cards.length) {
-            toggleTimer(false);
-            alert('완료');
+            setTimeout(() => {
+                toggleTimer(false);
+                alert('완료');
+            }, 50);
         }
     }, [solvedCards]);
 

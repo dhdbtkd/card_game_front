@@ -13,7 +13,7 @@ const CardComponent: React.FC<CardProps> = ({ card, isFlipped, isSolved, handleC
     return (
         <div
             data-value={card.value}
-            className={`  flex items-center justify-center w-28 h-40 p-4 rounded-lg border border-zinc-100 ${
+            className={`  flex items-center justify-center w-28 h-40 p-4 rounded-lg border border-zinc-100 bg-cover bg-center ${
                 isSolved ? 'bg-green-600' : isFlipped ? 'bg-zinc-800' : 'cursor-pointer hover:bg-zinc-800'
             }
             ${isWaiting ? 'cursor-not-allowed' : ''}`}
@@ -25,6 +25,7 @@ const CardComponent: React.FC<CardProps> = ({ card, isFlipped, isSolved, handleC
                 transition: 'transform 0.25s', // 애니메이션 속도
                 transform: isFlipped || isSolved ? 'rotateY(180deg)' : 'rotateY(0deg)', // 회전 효과
                 transformStyle: 'preserve-3d', // 3D 회전 효과 유지
+                backgroundImage: (isFlipped && card.imgSrc) || isSolved ? `url(${card.imgSrc})` : '',
             }}
         >
             <div

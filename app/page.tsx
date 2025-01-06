@@ -170,7 +170,7 @@ const Home: React.FC = () => {
                                     className="duration-300 hover:-translate-y-2 rounded-lg bg-zinc-100 text-zinc-900 px-16 py-4 text-lg cursor-pointer"
                                     onClick={startGame}
                                 >
-                                    Let's start
+                                    Lets start
                                 </div>
                             </div>
                         ) : cards.length > 0 && solvedCards.length === cards.length ? (

@@ -7,6 +7,7 @@ import Timer, { TimerHandle } from './components/Timer';
 import { Icon } from '@iconify/react';
 
 import { useTimer } from './hooks/useTimer';
+import Head from 'next/head';
 
 const queryClient = new QueryClient();
 
@@ -139,6 +140,10 @@ const Home: React.FC = () => {
     };
     return (
         <QueryClientProvider client={queryClient}>
+            <Head>
+                <title>Overwatch Card Game</title>
+                <meta name="description" content="오버워치 영웅 카드 짝맞추기" />
+            </Head>
             <div className="p-4 lg:p-14 bg-zinc-900 text-zinc-100">
                 <h2 className="text-center mb-3 text-lg">NextJS Card Game</h2>
                 <div className="text-center mb-3 text-sm">

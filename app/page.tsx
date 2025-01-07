@@ -66,8 +66,9 @@ const Home: React.FC = () => {
     };
     useEffect(() => {
         console.log('카드 로딩 완료');
-        if (cards) shuffleCards(cards);
-    }, [cards]);
+        if (cards.length > 0 && shuffledCards.length === 0) shuffleCards(cards);
+    }, [cards, shuffledCards]);
+
     useEffect(() => {
         if (cards.length > 0 && solvedCards.length === cards.length) {
             completeGame();
@@ -144,7 +145,7 @@ const Home: React.FC = () => {
                 <title>Overwatch Card Game</title>
                 <meta name="description" content="오버워치 영웅 카드 짝맞추기" />
             </Head>
-            <div className="p-4 lg:p-14 bg-zinc-900 text-zinc-100">
+            <div className="p-4 lg:p-14 bg-zinc-900 text-zinc-100 h-full w-full">
                 <h2 className="text-center mb-3 text-lg">NextJS Card Game</h2>
                 <div className="text-center mb-3 text-sm">
                     <div className="flex text-xs text-zinc-300 items-center justify-center">
